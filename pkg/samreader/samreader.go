@@ -304,6 +304,9 @@ func (d SamReader) Dump() error {
 			return err
 		}
 		data := v.NTLMHash.GetData(v.Data)
+		if len(data) == 0 {
+			continue
+		}
 		if data[0] == 2 {
 			//new style (AES)
 			a := NewSamHashAES(data)
